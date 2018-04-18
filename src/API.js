@@ -10,7 +10,6 @@ let d = new Date();
 export default {
   getItems: function(stuff) {
     return client.query("productFilter", {
-      // q: "name:jackets last_changed:>1523862000000"
       q: `name:${stuff} last_changed:>${d.setDate(d.getDate() - 1)}`
     });
   }
