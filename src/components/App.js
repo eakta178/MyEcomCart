@@ -89,7 +89,7 @@ class App extends React.Component {
     const status = { ...this.state.status };
     event.preventDefault();
 
-    API.getItems()
+    API.getItems(this.props.match.params.storeId)
       .then(res => {
         let data = res["products"];
         //let newItem = {}

@@ -1,17 +1,17 @@
 // const webhoseio = require("webhoseio");
 import webhoseio from "webhoseio";
+import react from "react";
 
 const client = webhoseio.config({
   token: "f28deb4c-502f-4eb3-a7ee-080c94333eb6"
 });
-const query_params = {
-  q: "name:jackets last_changed:>1523862000000"
-};
+let d = new Date();
 
 export default {
-  getItems: function() {
-    return client.query("productFilter", query_params);
-    //console.log(output["products"][0]["name"]); // Print the name of the product
-    //console.log(output["products"][0]["price"]); // Print the price of the product
+  getItems: function(stuff) {
+    return client.query("productFilter", {
+      // q: "name:jackets last_changed:>1523862000000"
+      q: `name:${stuff} last_changed:>${d.setDate(d.getDate() - 1)}`
+    });
   }
 };
