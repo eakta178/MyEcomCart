@@ -6,11 +6,17 @@ import Inventory from "./Inventory";
 import sampleFishes from "../sample-fishes";
 import Fish from "./Fish";
 import base from "../base";
+import API from "../API";
 
 class App extends React.Component {
   state = {
     fishes: {},
-    order: {}
+    order: {},
+    name: "",
+    image: "",
+    desc: "",
+    price: "",
+    status: ""
   };
 
   static propTypes = {
@@ -69,8 +75,23 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
-  loadSampleFishes = () => {
-    this.setState({ fishes: sampleFishes });
+  // loadSampleFishes = () => {
+  //   this.setState({ fishes: sampleFishes });
+  // };
+
+  loadSampleFishes = event => {
+    const fishes = { ...this.state.fishes };
+    event.preventDefault();
+
+    API.getItems()
+      .then(res => {
+        console.log(res);
+        //res["products"].forEach(item => fishes.push(item));
+        this.setState({
+          fishes
+        });
+      })
+      .catch(err => console.log(err));
   };
 
   addToOrder = key => {

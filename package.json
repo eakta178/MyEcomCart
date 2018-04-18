@@ -3,12 +3,15 @@
   "version": "0.0.3",
   "private": true,
   "devDependencies": {
+    "babel-preset-minify": "^0.4.0",
     "concurrently": "3.5.1",
     "react-scripts": "1.1.1"
   },
   "dependencies": {
     "autoprefixer-stylus": "0.14.0",
+    "es6-promise": "^4.2.4",
     "firebase": "^4.10.0",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.0",
     "re-base": "3.2.2",
     "react": "^16.3.0-alpha.1",
@@ -16,7 +19,8 @@
     "react-router-dom": "^4.2.2",
     "react-transition-group": "^2.2.1",
     "serve": "^6.5.0",
-    "stylus": "0.54.5"
+    "stylus": "0.54.5",
+    "webhoseio": "^1.0.2"
   },
   "scripts": {
     "dev": "react-scripts start",
