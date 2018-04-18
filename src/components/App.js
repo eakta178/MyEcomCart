@@ -15,7 +15,7 @@ class App extends React.Component {
     name: "",
     image: "",
     desc: "",
-    price: "",
+    price: 0,
     status: ""
   };
 
@@ -61,6 +61,7 @@ class App extends React.Component {
     // 1. Take a copy of the current state
     const fishes = { ...this.state.fishes };
     // 2. Update that state
+    console.log(updatedFish);
     fishes[key] = updatedFish;
     // 3. Set that to state
     this.setState({ fishes });
@@ -81,14 +82,37 @@ class App extends React.Component {
 
   loadSampleFishes = event => {
     const fishes = { ...this.state.fishes };
+    const name = { ...this.state.name };
+    const price = { ...this.state.price };
+    const desc = { ...this.state.desc };
+    const image = { ...this.state.image };
+    const status = { ...this.state.status };
     event.preventDefault();
 
     API.getItems()
       .then(res => {
-        console.log(res);
-        //res["products"].forEach(item => fishes.push(item));
+        let data = res["products"];
+        //let newFish = {}
+        console.log(data);
+        for (let i = 1; i < 20; i++) {
+          if (data[i]["images"].length > 0) {
+            fishes[`fish${i}`] = {
+              name: data[i]["name"],
+              price: data[i]["price"] * 100,
+              desc: data[i]["description"],
+              image: data[i]["images"][0],
+              status: "available"
+            };
+          }
+        }
+
         this.setState({
-          fishes
+          fishes: fishes
+          // name: name,
+          // price,
+          // desc,
+          // status,
+          // image
         });
       })
       .catch(err => console.log(err));
@@ -139,6 +163,11 @@ class App extends React.Component {
           deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
+          name={this.state.name}
+          desc={this.state.desc}
+          price={this.state.price}
+          image={this.state.image}
+          status={this.state.status}
           storeId={this.props.match.params.storeId}
         />
       </div>

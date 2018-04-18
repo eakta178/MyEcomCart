@@ -10,9 +10,8 @@ const query_params = {
 
 export default {
   getItems: function() {
-    return client.query("productFilter", query_params).then(output => {
-      console.log(output["products"][0]["name"]); // Print the name of the product
-      console.log(output["products"][0]["price"]); // Print the price of the product
-    });
+    return client.query("productFilter", query_params);
+    //console.log(output["products"][0]["name"]); // Print the name of the product
+    //console.log(output["products"][0]["price"]); // Print the price of the product
   }
 };
