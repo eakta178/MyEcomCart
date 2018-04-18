@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import firebase from "firebase";
-import AddFishForm from "./AddFishForm";
-import EditFishForm from "./EditFishForm";
+import AddItemForm from "./AddItemForm";
+import EditItemForm from "./EditItemForm";
 import Login from "./Login";
 import base, { firebaseApp } from "../base";
 
 class Inventory extends React.Component {
   static propTypes = {
-    fishes: PropTypes.object,
-    updateFish: PropTypes.func,
-    deleteFish: PropTypes.func,
-    loadSampleFishes: PropTypes.func
+    itemes: PropTypes.object,
+    updateItem: PropTypes.func,
+    deleteItem: PropTypes.func,
+    loadSampleItemes: PropTypes.func
   };
 
   state = {
@@ -82,17 +82,17 @@ class Inventory extends React.Component {
       <div className="inventory">
         <h2>Inventory</h2>
         {logout}
-        {Object.keys(this.props.fishes).map(key => (
-          <EditFishForm
+        {Object.keys(this.props.itemes).map(key => (
+          <EditItemForm
             key={key}
             index={key}
-            fish={this.props.fishes[key]}
-            updateFish={this.props.updateFish}
-            deleteFish={this.props.deleteFish}
+            item={this.props.itemes[key]}
+            updateItem={this.props.updateItem}
+            deleteItem={this.props.deleteItem}
           />
         ))}
-        <AddFishForm addFish={this.props.addFish} />
-        <button onClick={this.props.loadSampleFishes}>Load Sample Items</button>
+        <AddItemForm addItem={this.props.addItem} />
+        <button onClick={this.props.loadSampleItemes}>Load Sample Items</button>
       </div>
     );
   }

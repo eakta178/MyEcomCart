@@ -447,7 +447,7 @@ ul.order li span.count span {
 .order-title {
   text-align: center;
 }
-.fish-edit {
+.item-edit {
   margin-bottom: 20px;
   border: 2px solid #000;
   overflow: hidden;
@@ -457,9 +457,9 @@ ul.order li span.count span {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.fish-edit input,
-.fish-edit textarea,
-.fish-edit select {
+.item-edit input,
+.item-edit textarea,
+.item-edit select {
   width: 33.33%;
   padding: 10px;
   line-height: 1;
@@ -473,23 +473,23 @@ ul.order li span.count span {
   border-radius: 0;
   background: #fff;
 }
-.fish-edit input:focus,
-.fish-edit textarea:focus,
-.fish-edit select:focus {
+.item-edit input:focus,
+.item-edit textarea:focus,
+.item-edit select:focus {
   outline: 0;
   background: #fef2de;
 }
-.fish-edit textarea {
+.item-edit textarea {
   width: 100%;
 }
-.fish-edit input:last-of-type {
+.item-edit input:last-of-type {
   width: 100%;
 }
-.fish-edit button {
+.item-edit button {
   width: 100%;
   border: 0;
 }
-.list-of-fish {
+.list-of-item {
   border-top: 2px solid #000;
   border-bottom: 1px solid #000;
   padding-top: 5px;
@@ -497,7 +497,7 @@ ul.order li span.count span {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
-.menu-fish {
+.menu-item {
   border-bottom: 2px solid #000;
   border-top: 1px solid #000;
   padding-bottom: 2rem;
@@ -506,11 +506,11 @@ ul.order li span.count span {
   clear: both;
   overflow: hidden;
 }
-.menu-fish p {
+.menu-item p {
   margin: 0;
   font-size: 1.8rem;
 }
-.menu-fish .fish-name {
+.menu-item .item-name {
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -522,13 +522,13 @@ ul.order li span.count span {
       -ms-flex-align: center;
           align-items: center;
 }
-.menu-fish .price {
+.menu-item .price {
   font-size: 1.4rem;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.menu-fish img {
+.menu-item img {
   float: left;
   width: 150px;
   margin-right: 1rem;

@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
-import sampleFishes from "../sample-fishes";
-import Fish from "./Fish";
+import sampleItemes from "../sample-itemes";
+import Item from "./Item";
 import base from "../base";
 import API from "../API";
 
 class App extends React.Component {
   state = {
-    fishes: {},
+    itemes: {},
     order: {},
     name: "",
     image: "",
@@ -31,9 +31,9 @@ class App extends React.Component {
       this.setState({ order: JSON.parse(localStorageRef) });
     }
 
-    this.ref = base.syncState(`${params.storeId}/fishes`, {
+    this.ref = base.syncState(`${params.storeId}/itemes`, {
       context: this,
-      state: "fishes"
+      state: "itemes"
     });
   }
 
@@ -48,40 +48,40 @@ class App extends React.Component {
     base.removeBinding(this.ref);
   }
 
-  addFish = fish => {
+  addItem = item => {
     // 1. Take a copy of the existing state
-    const fishes = { ...this.state.fishes };
-    // 2. Add our new fish to that fishes variable
-    fishes[`fish${Date.now()}`] = fish;
-    // 3. Set the new fishes object to state
-    this.setState({ fishes });
+    const itemes = { ...this.state.itemes };
+    // 2. Add our new item to that itemes variable
+    itemes[`item${Date.now()}`] = item;
+    // 3. Set the new itemes object to state
+    this.setState({ itemes });
   };
 
-  updateFish = (key, updatedFish) => {
+  updateItem = (key, updatedItem) => {
     // 1. Take a copy of the current state
-    const fishes = { ...this.state.fishes };
+    const itemes = { ...this.state.itemes };
     // 2. Update that state
-    console.log(updatedFish);
-    fishes[key] = updatedFish;
+    console.log(updatedItem);
+    itemes[key] = updatedItem;
     // 3. Set that to state
-    this.setState({ fishes });
+    this.setState({ itemes });
   };
 
-  deleteFish = key => {
+  deleteItem = key => {
     // 1. take a copy of state
-    const fishes = { ...this.state.fishes };
+    const itemes = { ...this.state.itemes };
     // 2. update the state
-    fishes[key] = null;
+    itemes[key] = null;
     // 3.  update state
-    this.setState({ fishes });
+    this.setState({ itemes });
   };
 
-  // loadSampleFishes = () => {
-  //   this.setState({ fishes: sampleFishes });
+  // loadSampleItemes = () => {
+  //   this.setState({ itemes: sampleItemes });
   // };
 
-  loadSampleFishes = event => {
-    const fishes = { ...this.state.fishes };
+  loadSampleItemes = event => {
+    const itemes = { ...this.state.itemes };
     const name = { ...this.state.name };
     const price = { ...this.state.price };
     const desc = { ...this.state.desc };
@@ -92,11 +92,11 @@ class App extends React.Component {
     API.getItems()
       .then(res => {
         let data = res["products"];
-        //let newFish = {}
+        //let newItem = {}
         console.log(data);
         for (let i = 1; i < 20; i++) {
           if (data[i]["images"].length > 0) {
-            fishes[`fish${i}`] = {
+            itemes[`item${i}`] = {
               name: data[i]["name"],
               price: data[i]["price"] * 100,
               desc: data[i]["description"],
@@ -107,12 +107,7 @@ class App extends React.Component {
         }
 
         this.setState({
-          fishes: fishes
-          // name: name,
-          // price,
-          // desc,
-          // status,
-          // image
+          itemes: itemes
         });
       })
       .catch(err => console.log(err));
@@ -141,28 +136,28 @@ class App extends React.Component {
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Shop till you drop!!!" />
-          <ul className="fishes">
-            {Object.keys(this.state.fishes).map(key => (
-              <Fish
+          <ul className="itemes">
+            {Object.keys(this.state.itemes).map(key => (
+              <Item
                 key={key}
                 index={key}
-                details={this.state.fishes[key]}
+                details={this.state.itemes[key]}
                 addToOrder={this.addToOrder}
               />
             ))}
           </ul>
         </div>
         <Order
-          fishes={this.state.fishes}
+          itemes={this.state.itemes}
           order={this.state.order}
           removeFromOrder={this.removeFromOrder}
         />
         <Inventory
-          addFish={this.addFish}
-          updateFish={this.updateFish}
-          deleteFish={this.deleteFish}
-          loadSampleFishes={this.loadSampleFishes}
-          fishes={this.state.fishes}
+          addItem={this.addItem}
+          updateItem={this.updateItem}
+          deleteItem={this.deleteItem}
+          loadSampleItemes={this.loadSampleItemes}
+          itemes={this.state.itemes}
           name={this.state.name}
           desc={this.state.desc}
           price={this.state.price}
