@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getFunName } from "../helpers";
+// import { getFunName } from "../helpers";
 
 class StorePicker extends React.Component {
   myInput = React.createRef();
@@ -15,6 +15,7 @@ class StorePicker extends React.Component {
     const storeName = this.myInput.value.value;
     // 3. Change the page to /store/whatever-they-entered
     this.props.history.push(`/store/${storeName}`);
+    //this.props.loadSampleItemes();
   };
   render() {
     return (

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Header from "./Header";
 import Order from "./Order";
 import Inventory from "./Inventory";
-import sampleItemes from "../sample-itemes";
 import Item from "./Item";
 import base from "../base";
 import API from "../API";
@@ -135,19 +134,6 @@ class App extends React.Component {
     this.setState({ order });
   };
 
-  proceedCheckout = key => {
-    // 1. take a copy of state
-    const order = { ...this.state.order };
-    const itemes = { ...this.state.itemes };
-    // 2. go to website to buy
-    return this.state.itemes[key].url;
-    console.log(this.state.itemes[key].url);
-    //delete order from your website
-    delete order[key];
-    // 3. Call setState to update our state object
-    this.setState({ order });
-  };
-
   render() {
     return (
       <div className="catch-of-the-day">
@@ -168,7 +154,6 @@ class App extends React.Component {
           itemes={this.state.itemes}
           order={this.state.order}
           removeFromOrder={this.removeFromOrder}
-          proceedCheckout={this.proceedCheckout}
         />
         <Inventory
           addItem={this.addItem}

@@ -1,6 +1,5 @@
 // const webhoseio = require("webhoseio");
 import webhoseio from "webhoseio";
-import react from "react";
 
 const client = webhoseio.config({
   token: "f28deb4c-502f-4eb3-a7ee-080c94333eb6"

@@ -87,11 +87,13 @@ class Order extends React.Component {
         <Button
           classNames="primary"
           animated="vertical"
-          disabled={total == 0}
+          disabled={total === 0}
           // onClick={() => addClassName("loading"))}
         >
           <Button.Content hidden>
-            {total != 0 ? "Select 'checkout' to buy" : "Add Items to yor Order"}
+            {total !== 0
+              ? "Select 'checkout' to buy"
+              : "Add Items to yor Order"}
           </Button.Content>
           <Button.Content visible>
             <Icon className="payment" />
