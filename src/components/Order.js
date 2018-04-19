@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { formatPrice } from "../helpers";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Step, Button, Icon } from "semantic-ui-react";
 
 class Order extends React.Component {
   static propTypes = {
@@ -48,6 +49,15 @@ class Order extends React.Component {
             <button onClick={() => this.props.removeFromOrder(key)}>
               &times;
             </button>
+            <Step.Group>
+              <Step
+                icon="credit card"
+                title="Checkout"
+                description=""
+                href={this.props.itemes[key].url}
+                target="_blank"
+              />
+            </Step.Group>
           </span>
         </li>
       </CSSTransition>
@@ -74,6 +84,19 @@ class Order extends React.Component {
           Total:
           <strong>{formatPrice(total)}</strong>
         </div>
+        <Button
+          classNames="primary"
+          animated="vertical"
+          disabled={total == 0}
+          // onClick={() => addClassName("loading"))}
+        >
+          <Button.Content hidden>
+            {total != 0 ? "Select 'checkout' to buy" : "Add Items to yor Order"}
+          </Button.Content>
+          <Button.Content visible>
+            <Icon className="payment" />
+          </Button.Content>
+        </Button>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { formatPrice } from "../helpers";
+import { Button, Icon } from "semantic-ui-react";
 
 class Item extends React.Component {
   static propTypes = {
@@ -24,12 +25,24 @@ class Item extends React.Component {
           <span className="price">{formatPrice(price)}</span>
         </h3>
         <p>{desc}</p>
-        <button
+        <Button
+          animated="vertical"
+          disabled={!isAvailable}
+          onClick={() => this.props.addToOrder(this.props.index)}
+        >
+          <Button.Content hidden>
+            {isAvailable ? "Add To Order" : "Sold Out!"}
+          </Button.Content>
+          <Button.Content visible>
+            <Icon ClassName="shop" />
+          </Button.Content>
+        </Button>
+        {/* <button
           disabled={!isAvailable}
           onClick={() => this.props.addToOrder(this.props.index)}
         >
           {isAvailable ? "Add To Order" : "Sold Out!"}
-        </button>
+        </button> */}
       </li>
     );
   }

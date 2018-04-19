@@ -259,6 +259,9 @@ h2 {
 h3 {
   font-size: 3rem;
 }
+body {
+  background-image: url("/images/mycart.jpg");
+}
 header.top {
   text-align: center;
 }

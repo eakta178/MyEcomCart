@@ -12,6 +12,7 @@ class App extends React.Component {
   state = {
     itemes: {},
     order: {},
+    url: "",
     name: "",
     image: "",
     desc: "",
@@ -82,11 +83,13 @@ class App extends React.Component {
 
   loadSampleItemes = event => {
     const itemes = { ...this.state.itemes };
+    const url = { ...this.state.url };
     const name = { ...this.state.name };
     const price = { ...this.state.price };
     const desc = { ...this.state.desc };
     const image = { ...this.state.image };
     const status = { ...this.state.status };
+
     event.preventDefault();
 
     API.getItems(this.props.match.params.storeId)
@@ -97,6 +100,7 @@ class App extends React.Component {
         for (let i = 1; i < 20; i++) {
           if (data[i]["images"].length > 0) {
             itemes[`item${i}`] = {
+              url: data[i]["url"],
               name: data[i]["name"],
               price: data[i]["price"] * 100,
               desc: data[i]["description"],
@@ -131,11 +135,24 @@ class App extends React.Component {
     this.setState({ order });
   };
 
+  proceedCheckout = key => {
+    // 1. take a copy of state
+    const order = { ...this.state.order };
+    const itemes = { ...this.state.itemes };
+    // 2. go to website to buy
+    return this.state.itemes[key].url;
+    console.log(this.state.itemes[key].url);
+    //delete order from your website
+    delete order[key];
+    // 3. Call setState to update our state object
+    this.setState({ order });
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="Shop till you drop!!!" />
+          <Header tagline="It's An Add To Cart Kinda Day!!!" />
           <ul className="itemes">
             {Object.keys(this.state.itemes).map(key => (
               <Item
@@ -151,6 +168,7 @@ class App extends React.Component {
           itemes={this.state.itemes}
           order={this.state.order}
           removeFromOrder={this.removeFromOrder}
+          proceedCheckout={this.proceedCheckout}
         />
         <Inventory
           addItem={this.addItem}
